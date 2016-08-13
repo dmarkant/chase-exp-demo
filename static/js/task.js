@@ -4,7 +4,7 @@ var LOGGING = true;
 var SKIP_INSTRUCTIONS = true;
 
 var exp,
-	NROUNDS = 20,
+	NROUNDS = 24,
 	EXPECTED_DURATION = 30,
 	N_BONUS_GAMES = 5,
 	N_OPTIONS = 2,
@@ -60,7 +60,7 @@ var CONDITION_COLOR = ['same', 'diff'][condition % 2];
 
 
 // setup within-subject conditions
-// 5 mini-blocks of 12 games
+// 2 mini-blocks of 12 games
 mb = [['low', 'low'],
 	  ['low', 'low'],
 	  ['low', 'low'],
@@ -75,7 +75,7 @@ mb = [['low', 'low'],
 	  ['high', 'high']]
 var GAME_SETTINGS = [];
 var OPTSETS_SAMPLED = [];
-for (var b=0; b<5; b++) {
+for (var b=0; b<2; b++) {
 	mb = shuffle(mb);
 	$.each(mb, function(i, c) {
 		var variance = c[1];
