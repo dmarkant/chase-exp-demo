@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 
+  The consent.html displays the text of your IRB-approved
+  consent form.  Even if you are not required to provide
+  a consent form, it is helpful to use this form to 
+  describe what people can do if an error comes up, etc...
+
+-->
+<html>
+    <head>
+        <title>Psychology Experiment - Informed Consent Form</title>
+        <link rel=stylesheet href="/static/css/bootstrap.min.css" type="text/css">
+        <link rel=stylesheet href="/static/css/style.css" type="text/css">
+        <script type="text/javascript">
+            function onexit() {
+              self.close(); // no harm, no foul here
+            }
+        </script>
+    </head>
+    <body>
+        <div id="container-consent">
+            <div id="consent">
+                <h1>We need your consent to proceed</h1>
+                <hr>
+                <div class="legal well">
+                  <img id="logo" src="{{ server_location }}/static/images/MPIB_Logo_sw.jpg" alt="MPIB Logo" width=750px />       
+                  <h1>Declaration of Consent</h1>
+                    <p>Thank you for taking the time to
+                    participate in this experiment. Below is a consent form that
+                    describes the nature of the experiment, what to expect, and how you
+                    will be measured. Please take the time to read this over before
+                    deciding to participate in this experiment.</p>
+                    <p>In the study “Choosing from Experience” we intend to examine how people make 
+                    decisions based on their experiences. For this purpose you will play a simple 
+                    game in which you make decisions between sets of options after learning about 
+                    their values through experience. Your data will be stored electronically and will be anonymous.
+                    </p>
+                      <p>The Max Planck Institute for Human Development is an institution 
+                      that promotes scientific research. Our work adheres strictly to regulations 
+                      governing protection of privacy. The information requested in the study will 
+                      be kept confidential and archived and scientifically processed in accordance 
+                      with the Data Privacy Act. Personal data will not be passed on to any third 
+                      parties. The data will be used solely for research purposes, and any experimental 
+                      data that is shared with third parties will not contain any identifying information. 
+                      Personal contact data and experimental data will be stored separately from each 
+                      other and handled with utmost discretion. Participation in the study is voluntary 
+                      and you are able to end your participation at any time. You can revoke your 
+                      consent to use your data at any time from that date forward. 
+                      </p>
+                      <p>The study will last approximately 30 minutes. You will be paid a minimum 
+                      compensation of 1 dollar for your participation. In addition, you will be paid 
+                      a bonus of up to 3 dollars depending on your performance in the experiment.
+                      </p>
+              
+
+                <hr>
+                <h4>Do you understand and consent to these terms?</h4>
+                <br>
+
+                <center>
+                    <button type="button" class="btn btn-primary btn-lg" onClick="window.location='/exp?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}'">
+                    <span class="glyphicon glyphicon-ok"></span> I agree 
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger btn-lg" onClick="onexit()">
+                    <span class="glyphicon glyphicon-ban-circle"></span> No thanks, I do not want to do this HIT
+                    </button>
+                </center>
+
+            </div>
+        </div>
+    </body>
+</html>
+

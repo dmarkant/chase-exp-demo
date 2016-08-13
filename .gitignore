@@ -1,0 +1,5 @@
+.psiturk_history
+participants.db
+server.log
+config.txt
+*.pyc
