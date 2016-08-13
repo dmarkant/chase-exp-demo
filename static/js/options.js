@@ -195,11 +195,12 @@ var Urn = function(id) {
 // Option object for displaying urn, sampling outcomes,
 // and selecting for final choice
 //
-var Option = function(stage, id, n_options, border_color) {
+var Option = function(stage, id, index, n_options, border_color) {
 
 	var self = this;
 	self.id = id;
-	self.index = OPTIONS.indexOf(self.id);
+    self.index = index;
+	//self.index = OPTIONS.indexOf(self.id);
 	self.stage = stage;
 
     self.border_color = border_color;

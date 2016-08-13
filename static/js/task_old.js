@@ -1,6 +1,6 @@
 condition = [0, 1].sample(1)[0]
 
-var LOGGING = true;
+var LOGGING = false;
 var SKIP_INSTRUCTIONS = true;
 
 var exp,
@@ -190,13 +190,11 @@ var SamplingGame = function(round, callback, practice) {
 	self.n_options = N_OPTIONS;
 	var opt = OPTSETS_SAMPLED[round];
 	var gamble = generate_gamble_from_optset(self.round);
-	self.gamble = gamble;
-	//if (Math.random() < .5) {
-	//	self.gamble = gamble;
-	//} else {
-	//	self.gamble = {'options': {'A': gamble.options['B'], 'B': gamble.options['A']}}
-	//:if expand("%") == ""|browse confirm w|else|confirm w|endif
-	//}
+	if (Math.random() < .5) {
+		self.gamble = gamble;
+	} else {
+		self.gamble = {'options': {'A': gamble.options['B'], 'B': gamble.options['A']}}
+	}
 
 	// sampling cost condition
 	self.sampling_cost = GAME_SETTINGS[round]['cost']
@@ -235,6 +233,7 @@ var SamplingGame = function(round, callback, practice) {
 	output(['game', self.round, 'option_color', 'A', OPTION_BORDER_COLORS.indexOf(self.border_colors[0]), self.border_colors[0]]);
 	output(['game', self.round, 'option_color', 'B', OPTION_BORDER_COLORS.indexOf(self.border_colors[1]), self.border_colors[1]]);
 
+
 	self.begin = function() {
 		self.reset_stage(self.sampling_trial);
 	};
@@ -252,12 +251,9 @@ var SamplingGame = function(round, callback, practice) {
 			self.above_stage.html('<h1>GAME '+(self.round+1)+'/'+NROUNDS+'</h1>');
 			$('#cost').html('<h2>Cost per test:<p class=testingcost>'+self.sampling_cost_str+'</p></h2>');
 			self.options = {};
-			rOPT = shuffle(['A', 'B']);
 			for (var i=0; i<self.n_options; i++) {
-				var opt_label = rOPT[i];
-				output(['game', self.round, 'option', opt_label, i,
-						self.gamble.options[opt_label]['expected_value']]);
-				self.options[opt_label] = new Option(self.stage, opt_label, i, self.n_options, self.border_colors[i]);
+				var opt_label = OPTIONS[i];
+				self.options[opt_label] = new Option(self.stage, opt_label, self.n_options, self.border_colors[i]);
 				self.options[opt_label].draw();
 			};
 			self.set_instruction('Click the machine you want to test!');
