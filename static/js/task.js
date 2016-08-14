@@ -450,7 +450,7 @@ var SamplingExperiment = function() {
 	};
 
 	self.main = function() {
-		psiTurk.finishInstructions();
+		//psiTurk.finishInstructions();
 		//startIdleTracking();
 		self.next();
 	}
