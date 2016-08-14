@@ -184,7 +184,7 @@ var SamplingGame = function(round, callback, practice) {
 	self.practice = practice;
 	self.trial = -1;
 	self.n_options = N_OPTIONS;
-	//var opt = OPTSETS_SAMPLED[round];
+	var opt = OPTSETS_SAMPLED[round];
 	self.gamble = generate_gamble_from_optset(self.round);
 
 	// sampling cost condition
