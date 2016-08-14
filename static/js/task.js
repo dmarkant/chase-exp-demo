@@ -1,7 +1,7 @@
 condition = [0, 1].sample(1)[0]
 
 var LOGGING = true;
-var SKIP_INSTRUCTIONS = true;
+var SKIP_INSTRUCTIONS = false;
 
 var exp,
 	NROUNDS = 24,
@@ -25,25 +25,21 @@ var exp,
 	previous_colors = [];
 
 
-// Initialize psiturk object
+// Initialize psiturk object and preload resources
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
-
 psiTurk.preloadPages(['instruct.html',
 					  'stage.html',
 					  'feedback.html',
 					  'preq.html',
 					  'postq.html']);
-
 psiTurk.preloadImages(['static/images/pot.png',
 					   'static/images/person_other.png',
 					   'static/images/person_self.png']);
 
 
-
 // loading/sampling option sets
 //var CONDITION_ECOLOGY = (condition < 2) ? 'normal' : 'binary';
 var CONDITION_ECOLOGY = 'normal';
-
 if (CONDITION_ECOLOGY==='binary') {
 	var OPTSETS_PATH = 'static/problems_binary.csv'; // predefined option sets
 	var OPTSETS = load_option_sets_binary(OPTSETS_PATH);
@@ -188,15 +184,8 @@ var SamplingGame = function(round, callback, practice) {
 	self.practice = practice;
 	self.trial = -1;
 	self.n_options = N_OPTIONS;
-	var opt = OPTSETS_SAMPLED[round];
-	var gamble = generate_gamble_from_optset(self.round);
-	self.gamble = gamble;
-	//if (Math.random() < .5) {
-	//	self.gamble = gamble;
-	//} else {
-	//	self.gamble = {'options': {'A': gamble.options['B'], 'B': gamble.options['A']}}
-	//:if expand("%") == ""|browse confirm w|else|confirm w|endif
-	//}
+	//var opt = OPTSETS_SAMPLED[round];
+	self.gamble = generate_gamble_from_optset(self.round);
 
 	// sampling cost condition
 	self.sampling_cost = GAME_SETTINGS[round]['cost']
@@ -445,7 +434,6 @@ var SamplingExperiment = function() {
 	var self = this;
 	self.round = -1;
 	chosen_options = [];
-
 	output(['condition', condition]);
 	output(['condition_color', CONDITION_COLOR]);
 	output(['condition_ecology', CONDITION_ECOLOGY]);
@@ -463,7 +451,7 @@ var SamplingExperiment = function() {
 
 	self.main = function() {
 		psiTurk.finishInstructions();
-		startIdleTracking();
+		//startIdleTracking();
 		self.next();
 	}
 
@@ -473,7 +461,7 @@ var SamplingExperiment = function() {
 	};
 
 	self.finish = function() {
-		stopIdleTracking();
+		//stopIdleTracking();
 		PostQuestionnaire();
 	};
 

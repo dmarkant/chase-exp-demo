@@ -1,7 +1,3 @@
-/*
- * options.js
- *
- */
 var OPTION_BORDER_WIDTH = 25;
 var X_MIN = -100;
 var X_MAX = 100;
@@ -135,60 +131,6 @@ var NormalProblem = function(id, mn, variance) {
 	};
 	return self;
 };
-
-
-/*
-var generate_gamble = function(N) {
-	var options = {};
-	$.each(OPTIONS, function(i, id) {
-		options[id] = new Urn(id);
-	});
-	return {'options': options};
-};
-
-var discrete_expected_value = function(option) {
-	return option['H']*option['p'] + option['L']*(1-option['p']);
-};
-
-
-ranran = new Random(124); // change seed
-var Urn = function(id) {
-	var self = this;
-	self.id = id;
-
-	if (OPT_ENVIRONMENT == 'discrete-normal') {
-		var nd1 = NormalDistribution(10, 30);
-		var o1 = nd1.sampleInt();
-		var nd2 = NormalDistribution(40, 90);
-		var o2 = nd2.sampleInt();
-		var p = jStat.beta.sample(4, 4);
-		output(['[o1, o2, p]:', [o1, o2, p]]);
-
-		self.par = {'H': o1, 'L': o2, 'p': p};
-		self.random = function() {
-			return sample_from_discrete(self.par);
-		};
-		self.expected_value = discrete_expected_value(self.par);
-
-	};
-
-	if (OPT_ENVIRONMENT == 'discrete-skewed') {
-		var nd1 = NormalDistribution(10, 30);
-		var o1 = nd1.sampleInt();
-		var nd2 = NormalDistribution(40, 90);
-		var o2 = nd2.sampleInt();
-		var p = jStat.beta.sample(7, 1);
-		output(['[o1, o2, p]:', [o1, o2, p]]);
-
-		self.par = {'H': o1, 'L': o2, 'p': p};
-		self.random = function() {
-			return sample_from_discrete(self.par);
-		};
-		self.expected_value = discrete_expected_value(self.par);
-		//
-	};
-
-};*/
 
 
 //
