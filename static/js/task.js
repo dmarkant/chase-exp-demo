@@ -15,7 +15,6 @@ var LOGGING = true,
 	INIT_BONUS = 0,
 	BASE_PAYMENT = 1,
 	MAX_BONUS = 3,
-	COMPLETION_BONUS = .5,
 	CONVERSION_RATE = .01,
 	chosen_options = [],
 	chosen_options_id = [],
@@ -373,7 +372,7 @@ var Feedback = function() {
 	var payoffs = [];
 	var costs = [];
 	var bonuses = [];
-	final_bonus = INIT_BONUS + COMPLETION_BONUS;
+	final_bonus = INIT_BONUS;
 	for (var i=0; i<N_BONUS_GAMES; i++) {
 		//payoffs[i] = chosen_options[selected[i]].random();
 		payoffs[i] = chosen_options[selected[i]].expected_value;
@@ -405,8 +404,6 @@ var Feedback = function() {
 	};
 
 	html += '<tr style="border-top: 1px solid black; font-weight: bold;">' +
-		    '<td>Completion bonus:</td><td></td><td></td><td>$'+COMPLETION_BONUS.toFixed(2)+'</td></tr>'+
-			'<tr style="border-top: 1px solid black; font-weight: bold;">' +
 		    '<td>Final bonus:</td><td></td><td></td><td>$'+final_bonus.toFixed(2)+'</td></tr>'+
 			'</table>';
 	self.div.append(html);
