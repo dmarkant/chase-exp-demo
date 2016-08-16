@@ -1,9 +1,8 @@
 condition = [0, 1].sample(1)[0]
 
-var LOGGING = true;
-var SKIP_INSTRUCTIONS = false;
-
-var exp,
+var LOGGING = true,
+	SKIP_INSTRUCTIONS = false,
+	exp,
 	NROUNDS = 24,
 	EXPECTED_DURATION = 30,
 	N_BONUS_GAMES = 5,
@@ -91,16 +90,14 @@ function output(arr) {
     psiTurk.recordTrialData(arr);
     if (LOGGING) {
 		console.log(arr);
-		//console.log(arr.join(','));
 	}
 };
 
 
 // Idle time tracking
-var idleTime = 0;
-var idleInterval;
+var idleTime = 0,
+	idleInterval;
 function startIdleTracking() {
-
 	output(['starting to track idle time']);
 
 	//Increment the idle time counter every minute.
@@ -215,7 +212,7 @@ var SamplingGame = function(round, callback, practice) {
 		}
 	}
 
-	// store for the next round
+	// store current colors for the next round
 	previous_colors = self.border_colors;
 
 	// output state
@@ -223,6 +220,7 @@ var SamplingGame = function(round, callback, practice) {
 	output(['game', self.round, 'problem', opt['id'], opt['variance']]);
 	output(['game', self.round, 'option_color', 'A', OPTION_BORDER_COLORS.indexOf(self.border_colors[0]), self.border_colors[0]]);
 	output(['game', self.round, 'option_color', 'B', OPTION_BORDER_COLORS.indexOf(self.border_colors[1]), self.border_colors[1]]);
+
 
 	self.begin = function() {
 		self.reset_stage(self.sampling_trial);
@@ -311,6 +309,7 @@ var SamplingGame = function(round, callback, practice) {
 		});
 		self.set_instruction('Click on the machine you want to play for a bonus!');
 	};
+
 
 	self.finish = function() {
 		output(['game', self.round, 'choice', self.chosen_id])
