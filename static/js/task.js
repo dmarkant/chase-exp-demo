@@ -18,6 +18,7 @@ var LOGGING = true,
 	COMPLETION_BONUS = .5,
 	CONVERSION_RATE = .01,
 	chosen_options = [],
+	chosen_options_id = [],
 	total_sampling_cost = [],
 	final_bonus,
 	INACTIVITY_DEADLINE_MIN = 4,
@@ -307,13 +308,14 @@ var SamplingGame = function(round, callback, practice) {
 		$.each(self.options, function(i, opt) {
 			opt.listen(make_selection)
 		});
-		self.set_instruction('Click on the machine you want to play for a bonus!');
+		self.set_instruction('Click on the machine with the higher value!');
 	};
 
 
 	self.finish = function() {
 		output(['game', self.round, 'choice', self.chosen_id])
 
+		chosen_options_id.push(self.chosen_id);
 		chosen_options.push(self.gamble.options[self.chosen_id]);
 		total_sampling_cost.push((1 + self.trial) * SAMPLING_COSTS[self.sampling_cost]);
 
@@ -373,7 +375,8 @@ var Feedback = function() {
 	var bonuses = [];
 	final_bonus = INIT_BONUS + COMPLETION_BONUS;
 	for (var i=0; i<N_BONUS_GAMES; i++) {
-		payoffs[i] = chosen_options[selected[i]].random();
+		//payoffs[i] = chosen_options[selected[i]].random();
+		payoffs[i] = chosen_options[selected[i]].expected_value;
 		costs[i] = total_sampling_cost[selected[i]];
 		bonuses[i] = (payoffs[i] - costs[i]) * CONVERSION_RATE;
 		output(['instructions', 'feedback', 'selected_game', i, selected[i], payoffs[i], costs[i], bonuses[i]]);
